@@ -1,24 +1,24 @@
 mp.onButtonEvent(mp.MultiplayerButton.A, ControllerButtonEvent.Pressed, function (player2) {
-    mySprite = sprites.create(img`
+    projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . 4 4 4 . . . . . . . . . . . 
-        . 4 4 5 5 4 . . . . . . . . . . 
-        . 4 4 4 5 4 . . . . . . . . . . 
-        . 4 4 4 4 4 . . . . . . . . . . 
-        . . 4 4 4 . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
+        . . 4 4 4 4 4 . . . . . . . . . 
+        . 4 4 4 1 1 4 4 . . . . . . . . 
+        . 4 4 4 4 1 4 4 . . . . . . . . 
+        . 4 4 4 4 4 4 4 . . . . . . . . 
+        . 4 1 4 4 4 4 4 . . . . . . . . 
+        . 4 4 1 4 4 4 4 . . . . . . . . 
+        . . 4 4 4 4 4 . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        `, SpriteKind.Projectile)
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)), 100, -60)
 })
-let mySprite: Sprite = null
+let projectile: Sprite = null
 mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.One), sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -91,10 +91,10 @@ mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four), sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player))
-mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.One), 100, 100)
-mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Two), 100, 100)
-mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Three), 100, 100)
-mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Four), 100, 100)
+mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.One), 100, 90)
+mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Two), 100, 90)
+mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Three), 100, 90)
+mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Four), 100, 90)
 forever(function () {
 	
 })

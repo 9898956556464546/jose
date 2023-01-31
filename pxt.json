@@ -1,5 +1,5 @@
 {
-    "name": "jose",
+    "name": "jose - Copy",
     "description": "",
     "dependencies": {
         "device": "*",
@@ -18,7 +18,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "1.12.17",
+        "target": "1.12.18",
         "targetId": "arcade"
     },
     "supportedTargets": [

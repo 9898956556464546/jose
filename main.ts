@@ -1,3 +1,25 @@
+// DISPARO PLAYER 4
+controller.player4.onButtonEvent(controller.player4, ControllerButtonEvent.Pressed, function () {
+    projectile = sprites.createProjectileFromSprite(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . 4 4 4 4 4 . . . . . . 
+        . . . . 4 4 4 1 1 4 4 . . . . . 
+        . . . . 4 4 4 4 1 4 4 . . . . . 
+        . . . . 4 4 4 4 4 4 4 . . . . . 
+        . . . . 4 1 4 4 4 4 4 . . . . . 
+        . . . . 4 4 1 4 4 4 4 . . . . . 
+        . . . . . 4 4 4 4 4 . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four)), 0, -65)
+    music.play(music.createSoundEffect(WaveShape.Square, 5000, 85, 0, 255, 300, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.InBackground)
+})
 // DISPARO PLAYER 2
 ControllerButton.A.onButtonEvent(controller.player2, ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
@@ -22,6 +44,50 @@ ControllerButton.A.onButtonEvent(controller.player2, ControllerButtonEvent.Press
 })
 mp.onScore(10, function (player2) {
     game.gameOver(true)
+})
+// DISPARO PLAYER 1
+controller.player1.onButtonEvent(controller.player1, ControllerButtonEvent.Pressed, function () {
+    projectile = sprites.createProjectileFromSprite(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . 4 4 4 4 4 . . . . . . 
+        . . . . 4 4 4 1 1 4 4 . . . . . 
+        . . . . 4 4 4 4 1 4 4 . . . . . 
+        . . . . 4 4 4 4 4 4 4 . . . . . 
+        . . . . 4 1 4 4 4 4 4 . . . . . 
+        . . . . 4 4 1 4 4 4 4 . . . . . 
+        . . . . . 4 4 4 4 4 . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)), 0, -65)
+    music.play(music.createSoundEffect(WaveShape.Square, 5000, 85, 0, 255, 300, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.InBackground)
+})
+// DISPARO PLAYER 2
+controller.player3.onButtonEvent(controller.player2, ControllerButtonEvent.Pressed, function () {
+    projectile = sprites.createProjectileFromSprite(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . 4 4 4 4 4 . . . . . . 
+        . . . . 4 4 4 1 1 4 4 . . . . . 
+        . . . . 4 4 4 4 1 4 4 . . . . . 
+        . . . . 4 4 4 4 4 4 4 . . . . . 
+        . . . . 4 1 4 4 4 4 4 . . . . . 
+        . . . . 4 4 1 4 4 4 4 . . . . . 
+        . . . . . 4 4 4 4 4 . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three)), 0, -65)
+    music.play(music.createSoundEffect(WaveShape.Square, 5000, 85, 0, 255, 300, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.InBackground)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy(effects.spray, 100)

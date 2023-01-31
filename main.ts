@@ -1,5 +1,4 @@
-// DISPARO PLAYER 4
-controller.player4.onButtonEvent(controller.player4, ControllerButtonEvent.Pressed, function () {
+controller.player4.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -19,9 +18,9 @@ controller.player4.onButtonEvent(controller.player4, ControllerButtonEvent.Press
         . . . . . . . . . . . . . . . . 
         `, mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four)), 0, -65)
     music.play(music.createSoundEffect(WaveShape.Square, 5000, 85, 0, 255, 300, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.InBackground)
+    mp.changePlayerStateBy(mp.playerSelector(mp.PlayerNumber.Four), MultiplayerState.score, 1)
 })
-// DISPARO PLAYER 2
-ControllerButton.A.onButtonEvent(controller.player2, ControllerButtonEvent.Pressed, function () {
+controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -41,12 +40,9 @@ ControllerButton.A.onButtonEvent(controller.player2, ControllerButtonEvent.Press
         . . . . . . . . . . . . . . . . 
         `, mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)), 0, -65)
     music.play(music.createSoundEffect(WaveShape.Square, 5000, 85, 0, 255, 300, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.InBackground)
+    mp.changePlayerStateBy(mp.playerSelector(mp.PlayerNumber.Two), MultiplayerState.score, 1)
 })
-mp.onScore(10, function (player2) {
-    game.gameOver(true)
-})
-// DISPARO PLAYER 1
-controller.player1.onButtonEvent(controller.player1, ControllerButtonEvent.Pressed, function () {
+controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -66,9 +62,9 @@ controller.player1.onButtonEvent(controller.player1, ControllerButtonEvent.Press
         . . . . . . . . . . . . . . . . 
         `, mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)), 0, -65)
     music.play(music.createSoundEffect(WaveShape.Square, 5000, 85, 0, 255, 300, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.InBackground)
+    mp.changePlayerStateBy(mp.playerSelector(mp.PlayerNumber.One), MultiplayerState.score, 1)
 })
-// DISPARO PLAYER 2
-controller.player3.onButtonEvent(controller.player2, ControllerButtonEvent.Pressed, function () {
+controller.player3.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -88,14 +84,86 @@ controller.player3.onButtonEvent(controller.player2, ControllerButtonEvent.Press
         . . . . . . . . . . . . . . . . 
         `, mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three)), 0, -65)
     music.play(music.createSoundEffect(WaveShape.Square, 5000, 85, 0, 255, 300, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.InBackground)
+    mp.changePlayerStateBy(mp.playerSelector(mp.PlayerNumber.Three), MultiplayerState.score, 1)
+})
+controller.player3.onEvent(ControllerEvent.Connected, function () {
+    mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three), sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . 1 . . . . . . . 
+        . . . . . . . 1 1 1 . . . . . . 
+        . . . . . . 1 1 4 1 1 . . . . . 
+        . . . . . 1 1 4 1 4 1 1 . . . . 
+        . . . . 1 1 4 1 1 1 4 1 1 . . . 
+        . . . 1 1 4 1 1 . 1 1 4 1 1 . . 
+        . . . 1 4 1 1 . . . 1 1 4 1 . . 
+        . . . 1 1 1 . . . . . 1 1 1 . . 
+        . . . 5 4 5 . . . . . 5 4 5 . . 
+        . . . . 5 . . . . . . . 5 . . . 
+        . . . 5 4 5 . . . . . 5 4 5 . . 
+        . . . . 5 . . . . . . . 5 . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Player))
+    mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Three), 100, 90)
+    mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three)).setBounceOnWall(true)
+})
+controller.player2.onEvent(ControllerEvent.Connected, function () {
+    mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two), sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . 1 . . . . . . . 
+        . . . . . . . 1 1 1 . . . . . . 
+        . . . . . . 1 1 8 1 1 . . . . . 
+        . . . . . 1 1 8 1 8 1 1 . . . . 
+        . . . . 1 1 8 1 1 1 8 1 1 . . . 
+        . . . 1 1 8 1 1 . 1 1 8 1 1 . . 
+        . . . 1 8 1 1 . . . 1 1 8 1 . . 
+        . . . 1 1 1 . . . . . 1 1 1 . . 
+        . . . 5 4 5 . . . . . 5 4 5 . . 
+        . . . . 5 . . . . . . . 5 . . . 
+        . . . 5 4 5 . . . . . 5 4 5 . . 
+        . . . . 5 . . . . . . . 5 . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Player))
+    mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Two), 100, 90)
+    mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)).setBounceOnWall(true)
+})
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
+    otherSprite.destroy(effects.spray, 100)
+    sprite.destroy(effects.warmRadial, 5000)
+    game.gameOver(false)
+})
+mp.onScore(100, function (player2) {
+    game.gameOver(true)
+})
+controller.player4.onEvent(ControllerEvent.Connected, function () {
+    mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four), sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . 1 . . . . . . . 
+        . . . . . . . 1 1 1 . . . . . . 
+        . . . . . . 1 1 7 1 1 . . . . . 
+        . . . . . 1 1 7 1 7 1 1 . . . . 
+        . . . . 1 1 7 1 1 1 7 1 1 . . . 
+        . . . 1 1 7 1 1 . 1 1 7 1 1 . . 
+        . . . 1 7 1 1 . . . 1 1 7 1 . . 
+        . . . 1 1 1 . . . . . 1 1 1 . . 
+        . . . 5 4 5 . . . . . 5 4 5 . . 
+        . . . . 5 . . . . . . . 5 . . . 
+        . . . 5 4 5 . . . . . 5 4 5 . . 
+        . . . . 5 . . . . . . . 5 . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Player))
+    mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Four), 100, 90)
+    mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four)).setBounceOnWall(true)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy(effects.spray, 100)
     sprite.destroy()
-    mp.changePlayerStateBy(mp.playerSelector(mp.PlayerNumber.One), MultiplayerState.score, 1)
-    mp.changePlayerStateBy(mp.playerSelector(mp.PlayerNumber.Two), MultiplayerState.score, 1)
-    mp.changePlayerStateBy(mp.playerSelector(mp.PlayerNumber.Three), MultiplayerState.score, 1)
-    mp.changePlayerStateBy(mp.playerSelector(mp.PlayerNumber.Four), MultiplayerState.score, 1)
+    info.changeScoreBy(1)
 })
 let mySprite: Sprite = null
 let projectile: Sprite = null
@@ -239,68 +307,8 @@ mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.One), sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player))
-mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two), sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . 1 . . . . . . . 
-    . . . . . . . 1 1 1 . . . . . . 
-    . . . . . . 1 1 8 1 1 . . . . . 
-    . . . . . 1 1 8 1 8 1 1 . . . . 
-    . . . . 1 1 8 1 1 1 8 1 1 . . . 
-    . . . 1 1 8 1 1 . 1 1 8 1 1 . . 
-    . . . 1 8 1 1 . . . 1 1 8 1 . . 
-    . . . 1 1 1 . . . . . 1 1 1 . . 
-    . . . 5 4 5 . . . . . 5 4 5 . . 
-    . . . . 5 . . . . . . . 5 . . . 
-    . . . 5 4 5 . . . . . 5 4 5 . . 
-    . . . . 5 . . . . . . . 5 . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Player))
-mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three), sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . 1 . . . . . . . 
-    . . . . . . . 1 1 1 . . . . . . 
-    . . . . . . 1 1 4 1 1 . . . . . 
-    . . . . . 1 1 4 1 4 1 1 . . . . 
-    . . . . 1 1 4 1 1 1 4 1 1 . . . 
-    . . . 1 1 4 1 1 . 1 1 4 1 1 . . 
-    . . . 1 4 1 1 . . . 1 1 4 1 . . 
-    . . . 1 1 1 . . . . . 1 1 1 . . 
-    . . . 5 4 5 . . . . . 5 4 5 . . 
-    . . . . 5 . . . . . . . 5 . . . 
-    . . . 5 4 5 . . . . . 5 4 5 . . 
-    . . . . 5 . . . . . . . 5 . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Player))
-mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four), sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . 1 . . . . . . . 
-    . . . . . . . 1 1 1 . . . . . . 
-    . . . . . . 1 1 7 1 1 . . . . . 
-    . . . . . 1 1 7 1 7 1 1 . . . . 
-    . . . . 1 1 7 1 1 1 7 1 1 . . . 
-    . . . 1 1 7 1 1 . 1 1 7 1 1 . . 
-    . . . 1 7 1 1 . . . 1 1 7 1 . . 
-    . . . 1 1 1 . . . . . 1 1 1 . . 
-    . . . 5 4 5 . . . . . 5 4 5 . . 
-    . . . . 5 . . . . . . . 5 . . . 
-    . . . 5 4 5 . . . . . 5 4 5 . . 
-    . . . . 5 . . . . . . . 5 . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Player))
 mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.One), 100, 90)
-mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Two), 100, 90)
-mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Three), 100, 90)
-mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Four), 100, 90)
 mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)).setBounceOnWall(true)
-mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)).setBounceOnWall(true)
-mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three)).setBounceOnWall(true)
-mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four)).setBounceOnWall(true)
 game.onUpdateInterval(1000, function () {
     mySprite = sprites.create(img`
         . . . . . . . c c c a c . . . . 
